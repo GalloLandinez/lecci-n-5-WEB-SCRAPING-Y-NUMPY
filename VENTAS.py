@@ -1,0 +1,33 @@
+import pandas as pd
+import numpy as np
+
+import pandas as pd
+import numpy as np
+
+# 1. Cargar el archivo Excel
+excel_file = "FUNCIONES_1B.xlsx"  # Reemplazar con el nombre de tu archivo
+excel_reader = pd.ExcelFile(excel_file)
+
+# 2. Obtener nombres de las hojas
+hojas = excel_reader.sheet_names
+
+# 3. Crear una lista de arrays NumPy
+lista_arrays = []
+for i in hojas:
+    df_hoja = excel_reader.parse(i)  # Leer la hoja
+    dato_real = df_hoja[["VENTA","UNIDADES"]]  # Extraer la columna
+    array_hoja = dato_real.to_numpy() # Convertir a array NumPy
+    lista_arrays.append(array_hoja)
+
+    ss= pd.Dataframe(lista_arrays)
+
+ss= lista_arrays[4]  # Acceder al primer array (opcional)
+dd=lista_arrays[3]
+print(ss+dd)  # Imprimir el resultado de la suma de los arrays
+
+# 4. Combinar los arrays en uno solo (opcional)
+#array_completo = np.concatenate(lista_arrays)
+
+# Ahora array_completo contiene todos los datos de todas las hojas
+#print(array_completo)
+
